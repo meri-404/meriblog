@@ -1,0 +1,44 @@
+/* desktop-bg.css
+   Styles for the set-as-background buttons and basic desktop background behavior.
+*/
+
+.desktop {
+  /* make sure background covers the desktop area */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 240ms ease-in-out;
+}
+
+/* small overlay button on album thumbnails */
+.album-item .set-bg-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(255,255,255,0.95);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  line-height: 1;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+}
+
+/* viewer button look */
+#viewer-set-bg {
+  display: inline-block;
+  margin-top: 0.6rem;
+  background: #f4a172;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+#viewer-set-bg:hover {
+  filter: brightness(0.98);
+}
