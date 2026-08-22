@@ -2,172 +2,490 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>meriblog</title>
-<meta name="description" content="Bio, projetos e artigos sobre Python, SQL, Git e biblioteconomia.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>meriblog — bem-vinda(o)</title>
+<meta name="description" content="Bio, projetos e artigos sobre Python, SQL, Git e biblioteconomia — num desktop retrô.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500;1,600&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500;1,600&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/desktop.css">
 </head>
 <body>
 
-<header class="site-header">
-  <div class="wrap">
-    <a href="index.html" class="logo">meri<span>blog</span></a>
-    <nav>
-       <ul class="nav-links">
-        <li><a href="index.html#sobre">sobre</a></li>
-        <li><a href="index.html#posts">posts</a></li>
-        <li><a href="trilha.html">trilha</a></li>
-         <li><a href="album.html">album</a></li>
-        <li><a href="index.html#projeto">projeto</a></li>
-        <li><a href="index.html#contato">contato</a></li>
-      </ul>
-    </nav>
+<!-- ============================================
+     ÍCONES REUTILIZÁVEIS (svg pixel, sem antialiasing)
+     ============================================ -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="icon-notepad" viewBox="0 0 16 16">
+      <rect x="2" y="1" width="11" height="14" fill="#fdf6ef" stroke="#48312a"/>
+      <rect x="9" y="1" width="4" height="4" fill="#e8d9c8"/>
+      <rect x="4" y="6" width="7" height="1" fill="#dd98a1"/>
+      <rect x="4" y="8" width="7" height="1" fill="#f4a172"/>
+      <rect x="4" y="10" width="5" height="1" fill="#f4a172"/>
+    </symbol>
+    <symbol id="icon-folder" viewBox="0 0 16 16">
+      <rect x="1" y="4" width="6" height="2" fill="#e8825a"/>
+      <rect x="1" y="6" width="14" height="9" fill="#f4a172" stroke="#48312a"/>
+      <rect x="1" y="6" width="14" height="2" fill="#f7b48d"/>
+    </symbol>
+    <symbol id="icon-images" viewBox="0 0 16 16">
+      <rect x="1" y="4" width="6" height="2" fill="#c47a97"/>
+      <rect x="1" y="6" width="14" height="9" fill="#dd98a1" stroke="#48312a"/>
+      <rect x="3" y="8" width="10" height="5" fill="#fdf6ef" stroke="#48312a"/>
+      <rect x="4" y="11" width="2" height="1" fill="#e8825a"/>
+      <rect x="7" y="9" width="2" height="3" fill="#f4a172"/>
+      <rect x="10" y="10" width="2" height="2" fill="#b8863f"/>
+    </symbol>
+    <symbol id="icon-map" viewBox="0 0 16 16">
+      <rect x="1" y="2" width="14" height="12" fill="#f1e4d3" stroke="#48312a"/>
+      <path d="M3 12 L5 8 L7 10 L9 5 L12 11" stroke="#e8825a" stroke-width="1" fill="none"/>
+      <rect x="8" y="3" width="2" height="2" fill="#dd98a1"/>
+      <rect x="2" y="11" width="2" height="2" fill="#b8863f"/>
+    </symbol>
+    <symbol id="icon-program" viewBox="0 0 16 16">
+      <rect x="1" y="2" width="14" height="12" fill="#fdf6ef" stroke="#48312a"/>
+      <rect x="1" y="2" width="14" height="3" fill="#e8825a"/>
+      <rect x="2" y="6" width="4" height="4" fill="#dd98a1"/>
+      <rect x="7" y="6" width="7" height="1" fill="#b8863f"/>
+      <rect x="7" y="8" width="5" height="1" fill="#b8863f"/>
+      <rect x="2" y="11" width="12" height="1" fill="#f4a172"/>
+    </symbol>
+    <symbol id="icon-mail" viewBox="0 0 16 16">
+      <rect x="1" y="3" width="14" height="10" fill="#fdf6ef" stroke="#48312a"/>
+      <path d="M1 3 L8 9 L15 3" stroke="#e8825a" fill="none"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============================================
+     DESKTOP
+     ============================================ -->
+<main class="desktop">
+  <p class="desktop-title">meriblog<br>v1.0</p>
+
+  <!-- ============================================
+       WIDGETS
+       ============================================ -->
+  <div class="widgets-dock">
+    <div class="widget widget-weather">
+      <span class="widget-label">clima agora</span>
+      <div class="weather-main">
+        <span class="weather-icon" id="widget-weather-icon">🌡️</span>
+        <span class="weather-temp" id="widget-weather-temp">--°</span>
+      </div>
+      <span class="weather-desc" id="widget-weather-desc">carregando...</span>
+    </div>
+
+    <div class="widget widget-calendar">
+      <span class="widget-label cal-month" id="widget-calendar-month">mês</span>
+      <div class="cal-grid" id="widget-calendar-grid"></div>
+    </div>
+
+    <div class="widget widget-pomodoro">
+      <span class="widget-label">pomodoro</span>
+      <div class="pomo-time" id="widget-pomodoro-time">25:00</div>
+      <div class="pomo-controls">
+        <button class="pomo-btn" id="widget-pomodoro-play">▶</button>
+        <button class="pomo-btn" id="widget-pomodoro-reset">↺</button>
+      </div>
+    </div>
   </div>
-</header>
 
-<main>
+  <div class="icon" data-opens="window-posts">
+    <span class="icon-glyph"><svg><use href="#icon-folder"/></svg></span>
+    <span class="icon-label">posts</span>
+  </div>
 
-  <!-- ============ HERO ============ -->
-  <section class="hero wrap">
-    <div>
-      <p class="hero-eyebrow">biblioteconomia × python × sql × git</p>
-      <h1>oi, eu sou a <em>Meri</em> — <br>bem-vinda ao meu blog!</h1>
-      <p class="lede">
-        Estudante de Biblioteconomia e Ciência da Informação na USP, aprendendo a organizar informação nas estantes e nos códigos. Aqui eu documento meus
-        projetos, minhas leituras e meu processo de aprender Python, SQL e Git.
+  <div class="icon" data-opens="window-trilha">
+    <span class="icon-glyph"><svg><use href="#icon-map"/></svg></span>
+    <span class="icon-label">trilha.exe</span>
+  </div>
+
+  <div class="icon" data-opens="window-album">
+    <span class="icon-glyph"><svg><use href="#icon-images"/></svg></span>
+    <span class="icon-label">minhas imagens</span>
+  </div>
+
+  <div class="icon" data-opens="window-projeto">
+    <span class="icon-glyph"><svg><use href="#icon-program"/></svg></span>
+    <span class="icon-label">biblioteca.exe</span>
+  </div>
+
+  <div class="icon" data-opens="window-contato">
+    <span class="icon-glyph"><svg><use href="#icon-mail"/></svg></span>
+    <span class="icon-label">contato.txt</span>
+  </div>
+
+  <!-- ============================================
+       JANELA: POSTS
+       ============================================ -->
+  <div class="window" id="window-posts" data-title="posts" style="top:110px; left:160px;">
+    <div class="titlebar">
+      <div class="titlebar-label">
+        <span class="glyph"><svg><use href="#icon-folder"/></svg></span>
+        posts
+      </div>
+      <div class="win-controls">
+        <button class="win-btn">─</button>
+        <button class="win-btn">□</button>
+        <button class="win-btn close-btn">×</button>
+      </div>
+    </div>
+    <div class="winbody">
+      <div class="file-list">
+        <div class="file-row" data-show-post="post-1">
+          <span class="glyph"><svg><use href="#icon-notepad"/></svg></span>
+          <span class="file-meta">
+            <strong>Como modelei o banco da minha biblioteca digital</strong>
+            <span>BLG.2026.01 · 22 ago</span>
+          </span>
+        </div>
+        <div class="file-row" data-show-post="post-2">
+          <span class="glyph"><svg><use href="#icon-notepad"/></svg></span>
+          <span class="file-meta">
+            <strong>Meu primeiro commit (e os dez que desfiz depois)</strong>
+            <span>BLG.2026.02 · em breve</span>
+          </span>
+        </div>
+        <div class="file-row" data-show-post="post-3">
+          <span class="glyph"><svg><use href="#icon-notepad"/></svg></span>
+          <span class="file-meta">
+            <strong>Dashboard de hábitos: primeiras consultas em SQL</strong>
+            <span>BLG.2026.03 · em breve</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="post-detail" id="post-1">
+        <span class="call-number">BLG.2026.01 — 22 de agosto de 2026</span>
+        <h2>Como modelei o banco da minha biblioteca digital</h2>
+        <p>
+          Antes de escrever qualquer linha de Python, eu passei uma tarde
+          inteira só desenhando tabelas no papel. Parecia contraintuitivo,
+          mas foi o que me poupou de refazer o banco inteiro três vezes.
+        </p>
+        <p>
+          Comecei identificando as entidades principais: <code>livros</code>,
+          <code>autores</code> e <code>emprestimos</code>. Cada livro pode
+          ter vários autores, e cada autor pode ter vários livros — uma
+          relação muitos-para-muitos, resolvida com uma tabela associativa.
+        </p>
+        <pre>CREATE TABLE livros (
+    id INTEGER PRIMARY KEY,
+    titulo TEXT NOT NULL,
+    isbn TEXT UNIQUE,
+    ano_publicacao INTEGER
+);
+
+CREATE TABLE autores (
+    id INTEGER PRIMARY KEY,
+    nome TEXT NOT NULL
+);
+
+CREATE TABLE livro_autor (
+    livro_id INTEGER REFERENCES livros(id),
+    autor_id INTEGER REFERENCES autores(id),
+    PRIMARY KEY (livro_id, autor_id)
+);</pre>
+        <p>
+          No próximo artigo eu conto como usei orientação a objetos em
+          Python pra criar as classes <code>Livro</code> e <code>Autor</code>.
+        </p>
+        <span class="back-link" data-back-to-list>← voltar para a lista</span>
+      </div>
+
+      <div class="post-detail" id="post-2">
+        <span class="call-number">BLG.2026.02 — em breve</span>
+        <h2>Meu primeiro commit (e os dez que desfiz depois)</h2>
+        <p class="muted">Esse artigo ainda está sendo escrito. Volte em breve!</p>
+        <span class="back-link" data-back-to-list>← voltar para a lista</span>
+      </div>
+
+      <div class="post-detail" id="post-3">
+        <span class="call-number">BLG.2026.03 — em breve</span>
+        <h2>Dashboard de hábitos: primeiras consultas em SQL</h2>
+        <p class="muted">Esse artigo ainda está sendo escrito. Volte em breve!</p>
+        <span class="back-link" data-back-to-list>← voltar para a lista</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       JANELA: TRILHA (mapa)
+       ============================================ -->
+  <div class="window" id="window-trilha" data-title="trilha.exe" style="top:56px; left:120px; width:min(480px, 92vw);">
+    <div class="titlebar">
+      <div class="titlebar-label">
+        <span class="glyph"><svg><use href="#icon-map"/></svg></span>
+        trilha.exe
+      </div>
+      <div class="win-controls">
+        <button class="win-btn">─</button>
+        <button class="win-btn">□</button>
+        <button class="win-btn close-btn">×</button>
+      </div>
+    </div>
+    <div class="winbody" style="padding: 18px 14px;">
+      <p class="map-arrow-hint">role pra baixo pra seguir a trilha ↓</p>
+      <div class="map-panel">
+        <div class="timeline">
+
+          <div class="milestone milestone--highlight">
+            <div class="milestone-card">
+              <span class="milestone-date">22 de agosto de 2026</span>
+              <h3>Criei o meriblog</h3>
+              <p class="now">Aqui estou, documentando tudo — inclusive esse marco.</p>
+            </div>
+          </div>
+
+          <div class="milestone">
+            <div class="milestone-card">
+              <span class="milestone-date"><!-- TROQUE --> 20XX</span>
+              <h3>Entrada na USP — Biblioteconomia</h3>
+              <p><!-- TROQUE --> O início da graduação.</p>
+            </div>
+          </div>
+
+          <div class="milestone">
+            <div class="milestone-card">
+              <span class="milestone-date"><!-- TROQUE --> 20XX</span>
+              <h3>Emprego 3</h3>
+              <p><!-- TROQUE --> Conte o que foi esse trabalho.</p>
+            </div>
+          </div>
+
+          <div class="milestone">
+            <div class="milestone-card">
+              <span class="milestone-date"><!-- TROQUE --> 20XX</span>
+              <h3>Emprego 2</h3>
+              <p><!-- TROQUE --> Conte o que foi esse trabalho.</p>
+            </div>
+          </div>
+
+          <div class="milestone">
+            <div class="milestone-card">
+              <span class="milestone-date"><!-- TROQUE --> 20XX</span>
+              <h3>Mudei pra SP</h3>
+              <p><!-- TROQUE --> O que motivou essa mudança.</p>
+            </div>
+          </div>
+
+          <div class="milestone">
+            <div class="milestone-card">
+              <span class="milestone-date"><!-- TROQUE --> 20XX</span>
+              <h3>Viagem pra Recife</h3>
+              <p><!-- TROQUE --> O que essa viagem significou.</p>
+            </div>
+          </div>
+
+          <div class="milestone">
+            <div class="milestone-card">
+              <span class="milestone-date"><!-- TROQUE --> 20XX</span>
+              <h3>Emprego 1</h3>
+              <p><!-- TROQUE --> Seu primeiro trabalho — como foi.</p>
+            </div>
+          </div>
+
+          <div class="milestone milestone--highlight">
+            <div class="milestone-card">
+              <span class="milestone-date">16 de julho de 2002</span>
+              <h3>Nasci :)</h3>
+              <p>Boituva, SP — o começo de tudo.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       JANELA: ÁLBUM (explorador de imagens)
+       ============================================ -->
+  <div class="window" id="window-album" data-title="minhas imagens" style="top:96px; left:200px;">
+    <div class="titlebar">
+      <div class="titlebar-label">
+        <span class="glyph"><svg><use href="#icon-images"/></svg></span>
+        Minhas Imagens
+      </div>
+      <div class="win-controls">
+        <button class="win-btn">─</button>
+        <button class="win-btn">□</button>
+        <button class="win-btn close-btn">×</button>
+      </div>
+    </div>
+    <div class="winbody">
+      <!--
+        COMO ADICIONAR UMA FOTO:
+        1. Suba o arquivo em assets/img/ (ex: gato-sol.jpg)
+        2. Copie um bloco <div class="album-item">...</div> inteiro
+        3. Dentro do id correspondente, troque a div .album-thumb por:
+           <div class="album-thumb"><img src="assets/img/SEU-ARQUIVO.jpg" alt="..."></div>
+        4. Ajuste data-filename, data-caption e data-note
+      -->
+      <div class="album-grid">
+        <div class="album-item" data-show-photo="photo-1">
+          <span class="album-thumb">🐱</span>
+          <span class="album-filename">gato_sol.jpg</span>
+        </div>
+        <div class="album-item" data-show-photo="photo-2">
+          <span class="album-thumb">👨‍👩‍👧</span>
+          <span class="album-filename">familia_domingo.jpg</span>
+        </div>
+        <div class="album-item" data-show-photo="photo-3">
+          <span class="album-thumb">📚</span>
+          <span class="album-filename">cantinho_estudos.jpg</span>
+        </div>
+        <div class="album-item" data-show-photo="photo-4">
+          <span class="album-thumb">🐾</span>
+          <span class="album-filename">dois_gatos.jpg</span>
+        </div>
+      </div>
+
+      <!-- fonte de dados das fotos (fica escondida, só alimenta o visualizador) -->
+      <div style="display:none;">
+        <div id="photo-1" data-filename="gato_sol.jpg" data-caption="Dorminhoco de plantão" data-note="Meu gato tomando sol na janela, como sempre.">
+          <div class="album-thumb">🐱</div>
+        </div>
+        <div id="photo-2" data-filename="familia_domingo.jpg" data-caption="Domingo em família" data-note="Almoço de domingo, todo mundo junto.">
+          <div class="album-thumb">👨‍👩‍👧</div>
+        </div>
+        <div id="photo-3" data-filename="cantinho_estudos.jpg" data-caption="Cantinho de estudos" data-note="Onde a mágica (e o café) acontece.">
+          <div class="album-thumb">📚</div>
+        </div>
+        <div id="photo-4" data-filename="dois_gatos.jpg" data-caption="Fotografia dupla" data-note="Dois gatos, uma cama, zero espaço pra mim.">
+          <div class="album-thumb">🐾</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       JANELA: VISUALIZADOR DE IMAGEM (abre a partir do álbum)
+       ============================================ -->
+  <div class="window" id="window-viewer" data-title="visualizador" style="top:130px; left:260px; width:min(380px, 90vw);">
+    <div class="titlebar">
+      <div class="titlebar-label">
+        <span class="glyph"><svg><use href="#icon-images"/></svg></span>
+        <span id="viewer-title">visualizador</span>
+      </div>
+      <div class="win-controls">
+        <button class="win-btn">─</button>
+        <button class="win-btn">□</button>
+        <button class="win-btn close-btn">×</button>
+      </div>
+    </div>
+    <div class="winbody">
+      <div class="viewer-frame" id="viewer-frame">🐱</div>
+      <div class="viewer-caption">
+        <h3 id="viewer-caption-title">Dorminhoco de plantão</h3>
+        <p id="viewer-caption-text" class="muted">Meu gato tomando sol na janela, como sempre.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       JANELA: PROJETO (biblioteca.exe)
+       ============================================ -->
+  <div class="window" id="window-projeto" data-title="biblioteca.exe" style="top:86px; left:180px;">
+    <div class="titlebar">
+      <div class="titlebar-label">
+        <span class="glyph"><svg><use href="#icon-program"/></svg></span>
+        biblioteca.exe
+      </div>
+      <div class="win-controls">
+        <button class="win-btn">─</button>
+        <button class="win-btn">□</button>
+        <button class="win-btn close-btn">×</button>
+      </div>
+    </div>
+    <div class="winbody">
+      <h2>Biblioteca Acadêmica Digital</h2>
+      <p>
+        Um acervo online para organizar as leituras da faculdade: modelagem
+        relacional em SQL, orientação a objetos em Python e integração com
+        a API do Google Books para puxar metadados automáticos via ISBN.
       </p>
-      <div class="btn-row">
-        <a href="#posts" class="btn btn-primary">ver posts</a>
-        <a href="https://github.com/SEU-USUARIO" class="btn btn-ghost" target="_blank" rel="noopener">GitHub ↗</a>
+      <div class="badge-row">
+        <span class="badge">Python</span>
+        <span class="badge">SQL</span>
+        <span class="badge">POO</span>
+        <span class="badge">Google Books API</span>
+      </div>
+      <p class="muted" style="font-family: var(--font-mono); font-size:0.75rem;">progresso do projeto</p>
+      <div class="progress-track"><div class="progress-fill"></div></div>
+      <a href="https://github.com/SEU-USUARIO/biblioteca-digital" class="btn btn-primary" target="_blank" rel="noopener">ver no GitHub ↗</a>
+    </div>
+  </div>
+
+  <!-- ============================================
+       JANELA: CONTATO
+       ============================================ -->
+  <div class="window" id="window-contato" data-title="contato.txt" style="top:120px; left:220px; width:min(380px, 90vw);">
+    <div class="titlebar">
+      <div class="titlebar-label">
+        <span class="glyph"><svg><use href="#icon-mail"/></svg></span>
+        contato.txt
+      </div>
+      <div class="win-controls">
+        <button class="win-btn">─</button>
+        <button class="win-btn">□</button>
+        <button class="win-btn close-btn">×</button>
       </div>
     </div>
+    <div class="winbody">
+      <div class="notepad-body">bora trocar uma ideia:
 
-    <div class="hero-art">
-      <div class="card-illustration">
-        <p class="call-number">BCI.ECA.USP</p>
-        <h3>Ficha de leitura</h3>
-        <p>Listas de livros, artigos e conteúdos de biblioteconomia e ciência da informação</p>
-        <div class="stamp">meri<br>blog</div>
+GitHub  → github.com/SEU-USUARIO
+LinkedIn → linkedin.com/in/SEU-USUARIO
       </div>
     </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- ============ SOBRE ============ -->
-  <section id="sobre" class="reveal">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="section-eyebrow">quem soy yo</p>
-        <h2>sobre mim</h2>
-      </div>
-
-      <div class="about-grid">
-        <img src="assets/img/perfil.jpeg" alt="Foto Meri" class="about-photo">
-        <div class="about-text">
-          <p>
-            Meu nome é Maria Fernanda, tenho 24 anos e moro em SP.
-          </p>
-          <p class="muted">
-            Quando não estou estudando: estou com meus gatinhos, jogando Stardew Valley, com minha família ou meus amigusps.
-          </p>
-          <div class="tag-row">
-            <span class="tag">Python</span>
-            <span class="tag">Modelagem de dados</span>
-            <span class="tag">Git &amp; GitHub</span>
-            <span class="tag">Biblioteconomia</span>
-            <span class="tag">Rotinas</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- ============ POSTS ============ -->
-  <section id="posts" class="reveal">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="section-eyebrow">catálogo</p>
-        <h2>últimos posts</h2>
-      </div>
-
-      <div class="catalog-grid">
-
-        <a href="posts/exemplo-post.html" class="catalog-card">
-          <span class="call-number">MERI.BLG - 22 ago 2026</span>
-          <h3>Criando o blog</h3>
-          <p>Como comecei esse projeto</p>
-          <span class="read-more">ler artigo →</span>
-        </a>
-
-        <a href="#" class="catalog-card">
-          <span class="call-number">MERI.BLG - EM BREVE </span>
-          <h3>LOREM IPSUM 1</h3>
-          <p> LOREM LOREM LOREM </p>
-          <span class="read-more">ler artigo →</span>
-        </a>
-
-        <a href="#" class="catalog-card">
-          <span class="call-number">MERI.BLG - EM BREVE</span>
-          <h3>LOREM LOREM </h3>
-          <p>PSUM PISUM</p>
-          <span class="read-more">ler artigo →</span>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- ============ PROJETO DESTAQUE ============ -->
-  <section id="projeto" class="reveal">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="section-eyebrow">bastidores</p>
-        <h2>projeto em destaque</h2>
-      </div>
-
-      <div class="project-card">
-        <div>
-          <h3>Biblioteca Acadêmica Digital</h3>
-          <p>
-            Um acervo online para organizar as leituras da faculdade: modelagem
-            relacional em SQL, orientação a objetos em Python e integração com
-            a API do Google Books para puxar metadados automáticos via ISBN.
-          </p>
-          <div class="badge-row">
-            <span class="badge">Python</span>
-            <span class="badge">SQL</span>
-            <span class="badge">POO</span>
-            <span class="badge">Google Books API</span>
-          </div>
-        </div>
-        <a href="https://github.com/SEU-USUARIO/biblioteca-digital" class="btn btn-primary" target="_blank" rel="noopener">ver no GitHub ↗</a>
-      </div>
-    </div>
-  </section>
+  </div>
 
 </main>
 
-<!-- ============ FOOTER / CONTATO ============ -->
-<footer id="contato" class="site-footer">
-  <div class="wrap footer-grid">
-    <p class="footer-note">meriblog © 2026 </p>
-    <ul class="social-links">
-      <li><a href="https://github.com/meri-404" target="_blank" rel="noopener">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/maria-fernanda-rudi/" target="_blank" rel="noopener">LinkedIn</a></li>
-    </ul>
-  </div>
-</footer>
+<!-- ============================================
+     BARRA DE TAREFAS
+     ============================================ -->
+<div class="taskbar">
+  <button class="start-btn">
+    <span class="glyph" style="width:16px;height:16px;"><svg><use href="#icon-program"/></svg></span>
+    menu
+  </button>
+  <div class="taskbar-tabs"></div>
+  <div class="taskbar-clock">00:00</div>
+</div>
 
-<script src="assets/js/main.js"></script>
+<div class="start-menu">
+  <div class="start-menu-profile">
+    <!-- TROQUE: troque essa div por <div class="profile-photo"><img src="assets/img/SUA-FOTO.jpg" alt="Foto de Meri"></div> quando tiver uma foto -->
+    <div class="profile-photo">meri</div>
+    <div class="profile-info">
+      <strong>Meri</strong>
+      <span>Biblioteconomia · USP</span>
+    </div>
+  </div>
+  <div class="start-menu-item" data-opens="window-posts">
+    <span class="glyph"><svg><use href="#icon-folder"/></svg></span> posts
+  </div>
+  <div class="start-menu-item" data-opens="window-trilha">
+    <span class="glyph"><svg><use href="#icon-map"/></svg></span> trilha.exe
+  </div>
+  <div class="start-menu-item" data-opens="window-album">
+    <span class="glyph"><svg><use href="#icon-images"/></svg></span> minhas imagens
+  </div>
+  <div class="start-menu-item" data-opens="window-projeto">
+    <span class="glyph"><svg><use href="#icon-program"/></svg></span> biblioteca.exe
+  </div>
+  <div class="start-menu-item" data-opens="window-contato">
+    <span class="glyph"><svg><use href="#icon-mail"/></svg></span> contato.txt
+  </div>
+</div>
+
+<script src="assets/js/desktop.js"></script>
 </body>
 </html>
