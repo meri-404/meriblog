@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>meriblog — notas de uma bibliotecária em formação tech</title>
+<meta name="description" content="Bio, projetos e artigos sobre Python, SQL, Git e biblioteconomia.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500;1,600&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="logo">meri<span>blog</span></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#sobre">sobre</a></li>
+        <li><a href="#posts">posts</a></li>
+        <li><a href="#projeto">projeto</a></li>
+        <li><a href="#contato">contato</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero wrap">
+    <div>
+      <p class="hero-eyebrow">biblioteconomia × python × sql × git</p>
+      <h1>oi, eu sou a <em>Meri</em> — <br>bem-vinda ao meu cantinho</h1>
+      <p class="lede">
+        <!-- TROQUE ESTE TEXTO: sua bio curta -->
+        Estudante de Biblioteconomia e Ciência da Informação na USP, aprendendo a organizar informação nas estantes e nos códigos. Aqui eu documento meus
+        projetos, minhas leituras e o processo de aprender Python, SQL e Git do zero
+      </p>
+      <div class="btn-row">
+        <a href="#posts" class="btn btn-primary">ver posts</a>
+        <a href="https://github.com/SEU-USUARIO" class="btn btn-ghost" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <div class="card-illustration">
+        <p class="call-number">BCI.ECA.USP</p>
+        <h3>Ficha de leitura</h3>
+        <p>Livros e artigos das matérias de BCI.</p>
+        <div class="stamp">meri<br>blog</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ============ SOBRE ============ -->
+  <section id="sobre" class="reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">quem soy yo</p>
+        <h2>sobre mim</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-photo">sua foto aqui</div>
+        <div class="about-text">
+          <!-- TROQUE ESTE TEXTO: sua apresentação completa -->
+          <p>
+            Meu nome é Maria Fernanda, tenho 24 anos, moro em SP e sou estudante de Biblioteconomia na USP.
+            Esse blog nasceu como um caderno de bordo público: cada projeto
+            que eu monto, vira um artigo
+            aqui, contando o processo, as escolhas e as gambiarras.
+          </p>
+          <p class="muted">
+            Quando não estou estudando, estou com meus gatinhos, jogando Stardew Valley, com minha família ou meus amigusps.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Git &amp; GitHub</span>
+            <span class="tag">Biblioteconomia</span>
+            <span class="tag">Modelagem de dados</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ============ POSTS ============ -->
+  <section id="posts" class="reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">catálogo</p>
+        <h2>últimos posts</h2>
+      </div>
+
+      <div class="catalog-grid">
+
+        <a href="posts/exemplo-post.html" class="catalog-card">
+          <span class="call-number">BLG.2026.01 — 22 ago</span>
+          <h3>Como modelei o banco da minha biblioteca digital</h3>
+          <p>O processo de desenhar tabelas, chaves e relações em SQL antes de escrever uma linha de Python.</p>
+          <span class="read-more">ler artigo →</span>
+        </a>
+
+        <a href="#" class="catalog-card">
+          <span class="call-number">BLG.2026.02 — em breve</span>
+          <h3>Meu primeiro commit (e os dez que desfiz depois)</h3>
+          <p>O que aprendi sobre branches, merge e mensagens de commit decentes.</p>
+          <span class="read-more">ler artigo →</span>
+        </a>
+
+        <a href="#" class="catalog-card">
+          <span class="call-number">BLG.2026.03 — em breve</span>
+          <h3>Dashboard de hábitos: primeiras consultas em SQL</h3>
+          <p>ETL, tratamento de dados e as primeiras visualizações da minha rotina de estudos.</p>
+          <span class="read-more">ler artigo →</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ============ PROJETO DESTAQUE ============ -->
+  <section id="projeto" class="reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">bastidores</p>
+        <h2>projeto em destaque</h2>
+      </div>
+
+      <div class="project-card">
+        <div>
+          <h3>Biblioteca Acadêmica Digital</h3>
+          <p>
+            Um acervo online para organizar as leituras da faculdade: modelagem
+            relacional em SQL, orientação a objetos em Python e integração com
+            a API do Google Books para puxar metadados automáticos via ISBN.
+          </p>
+          <div class="badge-row">
+            <span class="badge">Python</span>
+            <span class="badge">SQL</span>
+            <span class="badge">POO</span>
+            <span class="badge">Google Books API</span>
+          </div>
+        </div>
+        <a href="https://github.com/SEU-USUARIO/biblioteca-digital" class="btn btn-primary" target="_blank" rel="noopener">ver no GitHub ↗</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER / CONTATO ============ -->
+<footer id="contato" class="site-footer">
+  <div class="wrap footer-grid">
+    <p class="footer-note">meriblog © 2026 — feito com Python, SQL, Git e um pouco de pêssego</p>
+    <ul class="social-links">
+      <li><a href="https://github.com/SEU-USUARIO" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://linkedin.com/in/SEU-USUARIO" target="_blank" rel="noopener">LinkedIn</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
